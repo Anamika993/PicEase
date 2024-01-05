@@ -13,7 +13,18 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 
 app.use("/api/v1/post", postRoutes);
-app.use("/api/v1/dalle", dalleRoutes);
+app.use(
+  "/api/v1/dalle",
+  (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://pic-ease.vercel.app");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  },
+  dalleRoutes
+);
 
 app.get("/", async (req, res) => {
   res.send("Hello");
