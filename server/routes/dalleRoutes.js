@@ -33,11 +33,10 @@ router.route("/").post(async (req, res) => {
     // });
   } catch (error) {
     if (error.aiResponse) {
-      // console.log(error.airesponse.status);
-      // console.log(error.aiResponse.data);
-      console.log("fghjk");
+      console.log(error.airesponse.status);
+      console.log(error.aiResponse.data);
     } else {
-      console.log("ASZDCV");
+      console.log(error);
     }
     res.status(400).json({
       succes: false,
